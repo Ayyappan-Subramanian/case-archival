@@ -1,14 +1,8 @@
 package com.example.casearchival;
 
-import com.example.casearchival.model.CaseDetails;
-import com.example.casearchival.repository.CaseArchivalRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @SpringBootApplication
 public class CasearchivalApplication {

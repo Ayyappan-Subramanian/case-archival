@@ -1,4 +1,4 @@
-package com.example.casearchival.model;
+package com.example.casearchival.modelArchival;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -18,12 +18,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class CaseDetails {
-@Id
+public class ArchivalCaseDetails {
+
+    @Id
     private int caseId;
     private String caseType;
     private String caseStatus;
+    @CreationTimestamp
     private LocalDateTime createdDate;
+    @UpdateTimestamp
     private LocalDateTime updatedDate;
-
 }

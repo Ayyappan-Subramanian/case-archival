@@ -3,8 +3,8 @@ package com.example.casearchival.controller;
 import com.example.casearchival.model.CaseDetails;
 import com.example.casearchival.service.CasearchivalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +24,24 @@ public class CasearchivalController {
         return service.getArchivalCases();
     }
 
+    @PostMapping("/addprimarycases")
+    public CaseDetails addPrimaryCases(@RequestBody CaseDetails casedetails) {
+        return service.addPrimaryCases(casedetails);
+    }
+    @PostMapping("/addarchivalcases")
+    public CaseDetails addArchivalCases(@RequestBody CaseDetails casedetails) {
+        return service.addArchivalCases(casedetails);
+    }
 
+    @GetMapping("/runarchival")
+    public String runarchival(){
+        return service.runarchival();
+    }
+
+    @DeleteMapping("/deleteprimarycase/{id}")
+    public ResponseEntity<Void> deletePrimaryCases(@PathVariable int id){
+        service.deletePrimaryCases(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
