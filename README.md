@@ -1,21 +1,21 @@
 # Automated Database Archival System
 
 ## 📌 Overview
-The **Automated Database Archival System** is a backend application built using Java and Spring Boot that automatically archives older records from a primary database to a secondary database. It is designed to improve database performance, optimize storage usage, and ensure efficient data lifecycle management using scheduled jobs and transactional processing.
+The **Automated Database Archival System** is a backend application built using **Java and Spring Boot** that automatically archives older records from a primary database to a secondary database. It is mainly designed to improve database performance, optimize storage usage and ensure efficient data lifecycle management using scheduled jobs and transactional processing.
 
 ## 🚀 Features
 - Automated archival of records based on defined conditions (e.g., age/time)
 - Scheduled job-based processing using Spring Scheduler
 - Multi-database support (Primary + Archive DB)
-- Transaction-safe data migration using Spring Data JPA
+- Transaction-safe data migration using Spring Data JPA with ACID properties ensuring data consistency
 - Batch processing for efficient handling of large datasets
 - Clean layered architecture (Controller → Service → Repository)
 - Data integrity ensured with rollback support on failure
 - Logging for monitoring and debugging archival operations
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack and Concepts
 - Java 8+
-- Spring Boot
+- Spring Boot (Spring MVC, Service & Repo Layer)
 - Spring Data JPA (Hibernate)
 - SQL
 - Maven
@@ -30,12 +30,11 @@ Controller → Service → Repository → Primary Database
                Archive Database  
 
 ## ⚙️ How It Works
-1. Scheduler triggers archival process at configured intervals
+1. Scheduler triggers archival process at configured intervals (if you want to auotmate)
 2. System identifies records eligible for archival
 3. Data is fetched from the primary database
 4. Records are validated and moved to the archive database
 5. Successfully migrated records are removed/flagged in the primary database
-6. Execution logs are generated for tracking and audit purposes
 
 ## 🔧 Setup Instructions
 
@@ -45,10 +44,15 @@ git clone https://github.com/your-username/automated-db-archival.git
 ```
 ### 2. Configure the Database Connection
 ```bash
-spring.datasource.primary.url=jdbc:mysql://localhost:3306/primary_db
-spring.datasource.archive.url=jdbc:mysql://localhost:3306/archive_db
-spring.datasource.username=root
-spring.datasource.password=your_password
+#Primary DB
+spring.datasource.primary-db.jdbc-url=jdbc:postgresql://localhost:5432/[Primary DB name]
+spring.datasource.primary-db.username=[your username]
+spring.datasource.primary-db.password=[your password]
+
+#Archival DB
+spring.datasource.archival-db.jdbc-url=jdbc:postgresql://localhost:5432/[Archival DB name]
+spring.datasource.archival-db.username=[your username]
+spring.datasource.archival-db.password=[your password]
 ```
 ### 3. Build the project
 ```bash
@@ -58,22 +62,10 @@ mvn clean install
 ```bash
 mvn spring-boot:run
 ```
-
-## 🔧 Project Structure
-```bash
-src/
- ├── controller/
- ├── service/
- ├── repository/
- ├── entity/
- ├── config/
- ├── scheduler/
- └── util/
-```
  
 ## 👨‍💻 Author
 Ayyappan Subramanian
 
-Software Developer | Java | Spring Boot | Distributed Systems
+Software Developer | Java | Spring Boot | Microservices
 
 GitHub: https://github.com/Ayyappan-Subramanian
