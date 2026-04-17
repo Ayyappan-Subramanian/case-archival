@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 //your bean name must be entityManagerFactor otherwise spring will not recognize it,
 // however here the bean name is casearchEntityManger.

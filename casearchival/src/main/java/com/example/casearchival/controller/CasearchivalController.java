@@ -19,7 +19,7 @@ public class CasearchivalController {
         return service.getAllCase();
     }
 
-    @GetMapping("/archivalcases")
+    @GetMapping("/getarchivalcases")
     public List<CaseDetails> getArchivalCases() {
         return service.getArchivalCases();
     }
@@ -33,7 +33,7 @@ public class CasearchivalController {
         return service.addArchivalCases(casedetails);
     }
 
-    @GetMapping("/runarchival")
+    @GetMapping("/runarchivalprocess")
     public String runarchival(){
         return service.runarchival();
     }

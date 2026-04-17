@@ -1,6 +1,9 @@
 package com.example.casearchival.model;
 
+import com.example.casearchival.enums.Status;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +28,7 @@ public class CaseDetails {
     private String caseStatus;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
 }

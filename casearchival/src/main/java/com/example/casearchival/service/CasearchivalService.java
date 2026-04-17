@@ -1,5 +1,6 @@
 package com.example.casearchival.service;
 
+import com.example.casearchival.enums.Status;
 import com.example.casearchival.model.CaseDetails;
 import com.example.casearchival.repoArchival.ArchivalCasesRepo;
 import com.example.casearchival.repoPrimary.PrimaryCasesRepo;
@@ -42,12 +43,23 @@ public class CasearchivalService {
 
     public String runarchival(){
         List<CaseDetails> l = getArchivalCases();
+        int count = 0;
 
         for(CaseDetails c : l) {
+            int updated = repo.markAsArchive(c.getCaseId());
+            if(updated == 0) {
+                if(c.getStatus() != Status.PICKED_FOR_ARCHIVAL) {
+                    continue;
+                }
+                LocalDateTime threshold = LocalDateTime.now().minusMinutes(5);
+                if(c.getUpdatedDate().isAfter(threshold))
+                {
+                    continue;
+                }
+            }
             addArchivalCases(c);
             deletePrimaryCases(c.getCaseId());
         }
-
         return "Success";
     }
 }
