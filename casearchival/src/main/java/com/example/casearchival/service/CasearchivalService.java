@@ -19,7 +19,8 @@ public class CasearchivalService {
     @Autowired
     public ArchivalCasesRepo archrepo;
 
-    public List<CaseDetails> getAllCase() {
+    public List<CaseDetails> getAllCase() throws InterruptedException{
+
         return repo.findAll();
     }
 

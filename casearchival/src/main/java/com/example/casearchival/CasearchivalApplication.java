@@ -11,7 +11,7 @@ public class CasearchivalApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(CasearchivalApplication.class, args);
-		
+
 	}
 
 }
